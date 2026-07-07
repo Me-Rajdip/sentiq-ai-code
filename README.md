@@ -1,3 +1,65 @@
+# Sentiq AI: Privacy-First Time-Series Anomaly Detection for UPI & Bank Transactions
+
+## Overview
+
+Sentiq AI is a sophisticated anomaly detection system designed to identify fraudulent transactions in UPI and banking systems using an LSTM Autoencoder architecture. The system learns normal spending patterns from transaction data and flags anomalies based on reconstruction error, providing explainable insights for each detected anomaly.
+
+## Key Features
+
+- **Privacy-First Architecture**: Processes transaction data locally without requiring sensitive information to be shared externally
+- **LSTM Autoencoder**: Deep learning model that learns normal behavioral patterns from time-series transaction data
+- **Real-time Detection**: Identifies anomalies in transaction sequences using reconstruction error analysis
+- **Explainable AI**: Provides human-readable explanations for each flagged anomaly
+- **Comprehensive Visualization**: 10+ chart types for data exploration and model evaluation
+
+## Technical Architecture
+
+### Data Processing Pipeline
+
+1. **Data Collection**
+   - Uses UPI Transactions 2024 Dataset from Kaggle
+   - Automatically falls back to synthetic data if external data is unavailable
+   - Standardizes column names for consistent processing
+
+2. **Data Validation & Cleaning**
+   - Handles missing values and duplicates
+   - Validates transaction amounts and balances
+   - Removes invalid entries
+
+3. **Feature Engineering**
+   - Transaction amount (log-transformed for skew reduction)
+   - Time-based features (hour of day, day of week, weekend indicator)
+   - Behavioral features:
+     - Merchant frequency and novelty scores
+     - Transaction velocity
+     - Balance changes
+     - Transaction type encoding
+     - Device and network type encoding
+
+4. **Sequence Creation**
+   - Sliding window approach (5 transactions per window)
+   - Feature scaling using MinMaxScaler
+   - Labels windows as anomalous if any transaction within is fraudulent
+
+5. **Model Architecture**
+
+Input Sequence (5 timesteps × 13 features)
+↓
+Encoder LSTM (32 units, return sequences=True)
+↓
+Encoder LSTM (16 units, return sequences=False)
+↓
+Latent Representation (16 units)
+↓
+Repeat Vector (5 timesteps)
+↓
+Decoder LSTM (16 units, return sequences=True)
+↓
+Decoder LSTM (32 units, return sequences=True)
+↓
+TimeDistributed Dense (13 features)
+↓
+Reconstructed Sequence
 
 ### Model Training
 
