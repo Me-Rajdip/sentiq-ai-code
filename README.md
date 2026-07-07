@@ -148,7 +148,6 @@ pip install tensorflow scikit-learn pandas numpy matplotlib seaborn plotly kaggl
 ## Future Enhancements
 
 - Real-time transaction monitoring
-- Web-based dashboard for visualization
 - Mobile app integration
 - Enhanced explainability features
 - Support for additional transaction types
