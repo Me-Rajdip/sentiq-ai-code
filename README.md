@@ -117,3 +117,44 @@ The system generates 11 different visualization types:
 
 ```bash
 pip install tensorflow scikit-learn pandas numpy matplotlib seaborn plotly kagglehub tf2onnx
+
+
+## Usage
+
+1. **Data Loading**: The system automatically downloads the UPI Transactions 2024 Dataset
+2. **Feature Engineering**: Behavioral features are automatically extracted
+3. **Training**: Model is trained on normal transaction patterns
+4. **Detection**: New transactions are evaluated for anomalies
+5. **Explanation**: Flagged anomalies come with human-readable explanations
+
+## Technical Requirements
+
+- Python 3.8+
+- TensorFlow 2.0+
+- scikit-learn
+- pandas
+- numpy
+- matplotlib
+- seaborn
+- plotly
+- kagglehub
+
+## Model Persistence
+
+- Saves trained model in `.keras` format
+- Supports ONNX export for browser/local inference
+- Stores trained model as `financeguard_best.keras`
+
+## Future Enhancements
+
+- Real-time transaction monitoring
+- Web-based dashboard for visualization
+- Mobile app integration
+- Enhanced explainability features
+- Support for additional transaction types
+
+## Acknowledgments
+
+- Dataset: UPI Transactions 2024 Dataset (Kaggle)
+- Architecture inspired by FinanceGuard AI
+- Built with TensorFlow and scikit-learn
